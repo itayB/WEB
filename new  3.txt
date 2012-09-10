@@ -1,0 +1,38 @@
+
+<?php
+include("Mobile_Detect.php");
+include("DesktopFrontPage.php");
+
+$detect = new Mobile_Detect();
+
+if($detect->isiOS()){
+    // code to run for the Apple iOS platform.
+	echo "iOS!";
+	echo "<br>";
+}
+if($detect->isAndroidOS()){
+    // code to run for the Google Android platform.
+	echo "Android";
+	echo "<br>";
+}
+if ($detect->isMobile()) {
+    // any mobile platform
+	echo "Mobile";
+	echo "<br>";
+}
+if($detect->isTablet()){
+    // any tablet
+	echo "Tablet";
+	echo "<br>";
+}
+if(!$detect->isMobile() && !$detect->isTablet()){
+    // any tablet
+	echo "Desktop!!!";
+	echo "<br>";
+}
+
+show();
+?>
+
+	<button type="button">Click Me!</button>
+			
