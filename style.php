@@ -1,3 +1,17 @@
+<?php header("Content-type: text/css"); ?>
+
+div#signupDiv {
+	position:fixed;
+	top:3px;
+	<?php 
+		if ($_COOKIE['language'] == 'he')
+				echo "left";
+		else
+				echo "right";
+	?>
+	:5px;
+}
+
 .buttonsClass {
 	-moz-box-shadow:inset 0px 1px 0px 0px #cae3fc;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #cae3fc;
@@ -32,10 +46,13 @@
 	border: 1px solid #e3e3e3;
 	/** remember to change image path **/
 	background: url(none) no-repeat #FFFFFF;
-	font-family: tahoma, helvetica, sans-serif;
+	/** font-family: tahoma, helvetica, sans-serif; **/
 	font-style: normal;
-	font-size: 17px;
+	/** font-size: 17px;  **/
 	color: #454743;
+	outline-color: #AAF7B3;
+	width: 100%;
+	padding: 3px;
 }
 
 .loginBox {
@@ -48,4 +65,8 @@
     background: #505A50;
     height: 38px;
     margin: 0;
+}
+
+.errorClass {
+	color: #DD4B39;
 }
