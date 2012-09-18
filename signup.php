@@ -252,6 +252,9 @@ include("commonFunctions.php");
 			</td>
 		</tr>
 	</table>
+	
+	<?php include("bottomToolbar.php"); ?>
+	
 	</form>
 </body>
 </html>

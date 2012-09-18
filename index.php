@@ -39,15 +39,6 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 			$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
 			$row = mysql_fetch_array($result,MYSQL_ASSOC);
 			$count = $row['count'];
-
-			//echo $result;
-			//echo "<br>";
-
-			//echo $row;
-			//echo "<br>";	
-			
-			//echo $count;
-			//echo "<br>";
 			
 			if( $count >0 ) {
 				session_register("username");
@@ -61,10 +52,7 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 	else if(isset($_POST['signup'])) {
 		header("location: signup.php");
 	}
-	else if(isset($_POST['language'])) {
-		setcookie('language',$_POST['language']);
-		header("location: index.php");
-	}
+	
 ?>
 
 <title>Itay <? print $host; ?></title>
@@ -78,14 +66,6 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 	<script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 
 <script>
-	function onloadFunction() {
-	<?php
-		echo "	document.getElementById('";
-		echo $_COOKIE['language'];
-		echo "').selected = true;";
-	?>
-	}
-	
 	function validateKey(element) {
 		var valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 		var key;
@@ -102,7 +82,7 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 	}	
 </script>
 </head>
-<body onload="onloadFunction()" style="margin: 0;padding: 0" dir="<?php getDir() ?>" >
+<body style="margin: 0;padding: 0" dir="<?php getDir() ?>" >
 <div class="topFrame">
 </div>
 	<form action="" method="post">
@@ -117,10 +97,7 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 			<div style="font-size:14px; color:red; margin-left:5px"><?php echo $error; ?></div>
 		</div>
 		
-		<select name="language" style="position:absolute;bottom:0px;margin:20px;" onchange="submit();" >
-			<option id="en" value="en">English</option>
-			<option id="he" value="he">עברית</option>
-		</select>
+<?php include("bottomToolbar.php"); ?>
 		
 	</form>
 

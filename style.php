@@ -1,15 +1,21 @@
-<?php header("Content-type: text/css"); ?>
+<?php header("Content-type: text/css"); 
+	 
+	$position = "right";
+	if ($_COOKIE['language'] == 'he')
+			$position = "left";	
+?>
+
 
 div#signupDiv {
 	position:fixed;
 	top:3px;
-	<?php 
-		if ($_COOKIE['language'] == 'he')
-				echo "left";
-		else
-				echo "right";
-	?>
-	:5px;
+	<?php echo $position; ?>:5px;
+}
+
+span#toolbarSpan {
+	position:fixed;
+	color:gray;
+	<?php echo $position; ?>:10px;
 }
 
 .buttonsClass {
