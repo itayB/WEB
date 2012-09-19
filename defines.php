@@ -1,8 +1,9 @@
 <?php
 if(isset($_POST['language'])) {
-	setcookie('language',$_POST['language']);
-	header("location: ".$_SERVER["REQUEST_URI"]);
-	//header("location: index.php");
+	if ($_COOKIE['language'] != $_POST['language']) {
+		setcookie('language',$_POST['language']);
+		header("location: ".$_SERVER["REQUEST_URI"]);
+	}
 }
 
 if($_COOKIE['language']==""){
