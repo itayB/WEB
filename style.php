@@ -76,3 +76,10 @@ span#toolbarSpan {
 .errorClass {
 	color: #DD4B39;
 }
+
+.statusMsg{  
+	text-align: center ; 
+    padding: 3px; /* Some padding to make some more space for our text  */  
+    background: #EDEDED; /* Add a background color to our status message   */  
+    border: 1px solid #DFDFDF; /* Add a border arround our status message   */  
+}

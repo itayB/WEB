@@ -28,25 +28,32 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 }
 
 	if(isset($_POST['signin'])) {
-		if($_SERVER["REQUEST_METHOD"] == "POST") {
-			include("dbconfig.php");
-			
-			$username = $_POST["username"];
-			$password = $_POST["password"];
+		include("dbconfig.php");
+		
+		if(isset($_POST['username']) && !empty($_POST['username']) AND isset($_POST['password']) && !empty($_POST['password'])) {  
+			$username = mysql_escape_string($_POST['username']);
+			$password = md5(mysql_escape_string($_POST['password']));
 
-			$SQL = "SELECT COUNT(*) AS count FROM usersTable WHERE (userName='$username' AND password='$password')";
+			$SQL = "SELECT userName,active FROM usersTable WHERE (userName='$username' AND password='$password')";
 
 			$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
-			$row = mysql_fetch_array($result,MYSQL_ASSOC);
-			$count = $row['count'];
+			$count = mysql_num_rows($result);
 			
-			if( $count >0 ) {
-				session_register("username");
-				$_SESSION['loginUser']=$username;
-				header("location: login.php");
+			if( $count == 0 ) {
+				$error=$usernameOrPasswordInvalidMsg;
 			} else {
-				$error="Username or Password is invalid";
+				$row = mysql_fetch_array($result,MYSQL_ASSOC);
+				if ($row['active'] == '0') {
+					$error="Make sure that you have activated your account.";
+				} else {
+					session_register("username");
+					$_SESSION['loginUser']=$username;
+					header("location: login.php");
+				}
 			}
+		}
+		else {
+			$error=$missingFieldsMsg;
 		}
 	}
 	else if(isset($_POST['signup'])) {

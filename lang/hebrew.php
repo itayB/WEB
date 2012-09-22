@@ -5,6 +5,8 @@ $usernameHint = "שם משתמש";
 $passwordHint = "סיסמה";
 $signUpMessage = "לא רשום עדיין?";
 $invalidKeyMessage = "ניתן להקליד אותיות באנגלית וספרות בלבד.";
+$usernameOrPasswordInvalidMsg="אחד או יותר מהפרטים שגוים.";
+$missingFieldsMsg="אחר או יותר מהפרטים חסרים.";
 $firstname="שם פרטי";
 $lastname="שם משפחה";
 $username="שם משתמש";
@@ -37,4 +39,7 @@ $signupTitle="הרשמה חינם";
 $emptyFieldErrMsg="נא למלא שדה זה.";
 $passwordFieldErrMsg="הסיסמאות אינן זהות.";
 $mandatoryField="* שדה חובה.";
+$emailActivationMsg="על מנת להתחיל ולהשתמש בחשבון, יש לאמת את הפרטים על ידי לחיצה על הקישור בהודעה שנשלחה לתיבת הדואר האלקטרוני.";
+$activationGuideMsg="המתן מספר דקות לקבלת ההודעה. במידה ולא התקבלה הודעה בדוק את תקיית הספאם שלך או ";
+$resendActivationEmailMsg="שלח מייל חוזר לאימות";
 ?>

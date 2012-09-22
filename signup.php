@@ -57,28 +57,42 @@ include("commonFunctions.php");
 <body style="margin: 0;padding: 0" dir="<?php getDir() ?>" >
 <div class="topFrame">
 <?php
-	if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signup'])) {
-		include("dbconfig.php");
-		
-		$firstname = $_POST["firstname"];
-		$lastname = $_POST["lastname"];
-		$username = $_POST["username"];
-		$password = $_POST["password"];
-		$email = $_POST["email"];
-		
-		$SQL = "SELECT COUNT(*) AS count FROM usersTable WHERE userName='$username'";
-
-		$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
-		$row = mysql_fetch_array($result,MYSQL_ASSOC);
-		$count = $row['count'];
-		
-		if( $count == 0 ) {
-			$SQL = "INSERT INTO usersTable (userName, password, email, firstName, lastName) VALUES ('$username', '$password', '$email', '$firstname', '$lastname')";
-			$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
-			echo "created succussfully";
-		}
-		else {
-			$error="Username already exist - Please choose other uesrname.";
+	if(isset($_POST['signup'])) {
+	
+		if(isset($_POST['firstname']) && !empty($_POST['firstname']) AND
+		   isset($_POST['lastname']) && !empty($_POST['lastname']) AND
+		   isset($_POST['username']) && !empty($_POST['username']) AND
+		   isset($_POST['password']) && !empty($_POST['password']) AND
+		   isset($_POST['email']) && !empty($_POST['email'])){  
+			$firstname = mysql_escape_string($_POST['firstname']);
+			$lastname = mysql_escape_string($_POST['lastname']);
+			$username = mysql_escape_string($_POST['username']);
+			$password = md5(mysql_escape_string($_POST['password']));
+			$email = mysql_escape_string($_POST['email']);
+			
+			if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)){  
+				// Return Error - Invalid Email  
+				$msg = 'The email you have entered is invalid, please try again.';  
+			}else{  
+				// Return Success - Valid Email  			
+				include("dbconfig.php");
+				
+				$SQL = "SELECT COUNT(*) AS count FROM usersTable WHERE userName='$username'";
+				$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
+				$row = mysql_fetch_array($result,MYSQL_ASSOC);
+				$count = $row['count'];
+				
+				if( $count != 0 ) {
+					$error="Username already exist - Please choose other uesrname.";
+				}else {
+					$hash = md5( rand(0,1000) ); // Generate random 32 character hash and assign it to a local variable.
+					$SQL = "INSERT INTO usersTable (userName, password, hash, email, firstName, lastName) VALUES ('$username', '$password', '$hash', '$email', '$firstname', '$lastname')";
+					$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error()); 
+					include("verificationEmail.php");
+					header("location: activation.php");
+					$msg = 'Your account has been made, <br /> please verify it by clicking the activation link that has been send to your email.'; 
+				}
+			}
 		}
 	}
 ?>
@@ -88,7 +102,7 @@ include("commonFunctions.php");
 	<table align="center" cellpadding="5" frame="box" bordercolor="#e3e3e3">
 		<tr>
 			<td>
-				<div id="generalErrorMessage" class="errorClass"></div>
+				<div id="generalErrorMessage" class="errorClass"><?php echo $msg ?></div>
 			</td>
 		</tr>
 		<tr>

@@ -5,6 +5,8 @@ $usernameHint = "Username";
 $passwordHint = "Password";
 $signUpMessage = "don't have account?";
 $invalidKeyMessage = "Only english letters and numbers are accepted.";
+$usernameOrPasswordInvalidMsg="Username or Password is invalid.";
+$missingFieldsMsg="One or more fields are missing.";
 $firstname="First name";
 $lastname="Last name";
 $username="Username";
@@ -37,4 +39,7 @@ $signupTitle="Signup Free";
 $emptyFieldErrMsg="Please fill this field.";
 $passwordFieldErrMsg="Password doesn't match.";
 $mandatoryField="* Mandatory field.";
+$emailActivationMsg="To start using your account, please verify it by clicking the activation link that has been send to your email.";
+$activationGuideMsg="Please wait few minutes to receive email. If nothing arrived check your spam folder or ";
+$resendActivationEmailMsg="send activation email again";
 ?>
