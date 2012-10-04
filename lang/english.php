@@ -42,4 +42,6 @@ $mandatoryField="* Mandatory field.";
 $emailActivationMsg="To start using your account, please verify it by clicking the activation link that has been send to your email.";
 $activationGuideMsg="Please wait few minutes to receive email. If nothing arrived check your spam folder or ";
 $resendActivationEmailMsg="send activation email again";
+$welcome="Welcome";
+$signout="Sign Out";
 ?>

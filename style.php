@@ -3,6 +3,12 @@
 	$position = "right";
 	if ($_COOKIE['language'] == 'he')
 			$position = "left";	
+			
+	function opp($pos) {
+		if ($pos == "right")
+			return "left";
+		return "right";
+	}
 ?>
 
 
@@ -10,6 +16,19 @@ div#signupDiv {
 	position:fixed;
 	top:3px;
 	<?php echo $position; ?>:5px;
+}
+
+div#welcomeDiv {
+	position:fixed;
+	top:-7px;
+	color:white;
+	<?php echo opp($position); ?>:15px;
+}
+
+div#signoutDiv {
+	position:fixed;
+	top:7px;
+	<?php echo $position; ?>:15px;
 }
 
 span#toolbarSpan {

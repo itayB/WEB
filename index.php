@@ -34,7 +34,7 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 			$username = mysql_escape_string($_POST['username']);
 			$password = md5(mysql_escape_string($_POST['password']));
 
-			$SQL = "SELECT userName,active FROM usersTable WHERE (userName='$username' AND password='$password')";
+			$SQL = "SELECT * FROM usersTable WHERE (userName='$username' AND password='$password')";
 
 			$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
 			$count = mysql_num_rows($result);
@@ -44,11 +44,19 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 			} else {
 				$row = mysql_fetch_array($result,MYSQL_ASSOC);
 				if ($row['active'] == '0') {
-					$error="Make sure that you have activated your account.";
+					header("location: activation.php?username=".$username);
+					//$error="Make sure that you have activated your account.";
 				} else {
-					session_register("username");
-					$_SESSION['loginUser']=$username;
-					header("location: login.php");
+					if(isset($_POST['timestamp']) && !empty($_POST['timestamp']) AND isset($_POST['timezoneOffset']) && !empty($_POST['timezoneOffset'])) {
+						//$timestamp = mysql_escape_string($_POST['timestamp']);
+						//$timezoneOffset = mysql_escape_string($_POST['timezoneOffset']);
+						//updateLoginInfo($row['index'],$timestamp,$timezoneOffset);
+						session_register("username");
+						$_SESSION['loginUser'] = $username;
+						$_SESSION['timestamp'] = mysql_escape_string($_POST['timestamp']);
+						$_SESSION['timezoneOffset'] = mysql_escape_string($_POST['timezoneOffset']);
+						header("location: login.php");
+					}
 				}
 			}
 		}
@@ -87,12 +95,19 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 			return false;
 		}
 	}	
+	
+	function updateTime() {
+		if (document.getElementsByName('timestamp')[0] != null)
+			document.getElementsByName('timestamp')[0].value = (new Date()).getTime();
+		if (document.getElementsByName('timezoneOffset')[0] != null)
+			document.getElementsByName('timezoneOffset')[0].value = (new Date()).getTimezoneOffset();			
+	}
 </script>
 </head>
-<body style="margin: 0;padding: 0" dir="<?php getDir() ?>" >
+<body style="margin: 0;padding: 0" dir="<?php getDir() ?>">
 <div class="topFrame">
 </div>
-	<form action="" method="post">
+	<form action="" method="post" onsubmit="updateTime();">
 		<div id="signupDiv">
 			<h for="signupButton" style="color:white"><?php echo $signUpMessage; ?></h>
 			<input name="signup" type="submit" id="signupButton" value="<?php echo $signUp; ?>" class="buttonsClass" style="right:5px;">
@@ -106,6 +121,8 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 		
 <?php include("bottomToolbar.php"); ?>
 		
+		<input name="timestamp" type="hidden">
+		<input name="timezoneOffset" type="hidden">
 	</form>
 
 </body>

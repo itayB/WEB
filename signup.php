@@ -89,8 +89,7 @@ include("commonFunctions.php");
 					$SQL = "INSERT INTO usersTable (userName, password, hash, email, firstName, lastName) VALUES ('$username', '$password', '$hash', '$email', '$firstname', '$lastname')";
 					$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error()); 
 					include("verificationEmail.php");
-					header("location: activation.php");
-					$msg = 'Your account has been made, <br /> please verify it by clicking the activation link that has been send to your email.'; 
+					header("location: activation.php?username=".$username);
 				}
 			}
 		}
