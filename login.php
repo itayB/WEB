@@ -1,6 +1,12 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-8-i" />
+	<link rel="stylesheet" type="text/css" href="style.php" />
+	<link rel="stylesheet" type="text/css" media="screen" href="jQuery-UI/css/ui-lightness/jquery-ui-1.8.23.custom.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="jqGrid/css/ui.jqgrid.css" />
+	<script src="jquery-1.8.0.min.js"></script>
+	<script src="jqGrid/js/i18n/grid.locale-he.js" type="text/javascript"></script>
+	<script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 
 <?php
 include('lock.php');
@@ -35,12 +41,6 @@ function getLastTimestamp() {
 	
 <title>Welcome  <?php echo $login_session; ?></title>
 	
-	<link rel="stylesheet" type="text/css" href="style.php" />
-	<link rel="stylesheet" type="text/css" media="screen" href="jQuery-UI/css/ui-lightness/jquery-ui-1.8.23.custom.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="jqGrid/css/ui.jqgrid.css" />
-	<script src="jquery-1.8.0.min.js"></script>
-	<script src="jqGrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-	<script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 	<script>
 		function getLoginTime() {
 			var currentTimestamp = <?php echo $_SESSION['timestamp']; ?>; // it's take the old one somehow... try to parse the min of this num 
@@ -65,7 +65,7 @@ function getLastTimestamp() {
 	</div>	
 
 	<p id="loginTime"></p>
-			
+	
 	<?php 
 		//echo "<br>";
 		//foreach ($_FILES['uploadedfile'] as $i => $value) {
@@ -103,11 +103,12 @@ function getLastTimestamp() {
 	<script>
 		$(function(){
 			$("#userTable").jqGrid({
+				direction: 'rtl',
 				url:'example.php',
 				datatype: 'xml',
 				mtype: 'GET',				
 				height: 300, 
-				colNames:['id','Name','e-mail'], 
+				colNames:['<?php echo $firstname; ?>','<?php echo $lastname; ?>','<?php echo $email; ?>'], 
 				colModel:[ 
 					{name:'id',index:'id', width:100}, 
 					{name:'name',index:'name', width:200},

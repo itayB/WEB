@@ -1,7 +1,13 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-8-i" />
-
+	<link rel="stylesheet" type="text/css" href="style.php" />
+	<link rel="stylesheet" type="text/css" media="screen" href="jQuery-UI/css/ui-lightness/jquery-ui-1.8.23.custom.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="jqGrid/css/ui.jqgrid.css" />
+	<script src="jquery-1.8.0.min.js"></script>
+	<script src="jqGrid/js/i18n/grid.locale-he.js" type="text/javascript"></script>
+	<script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	
 <?php
 include("Mobile_Detect.php");
 include("DesktopFrontPage.php");
@@ -72,14 +78,6 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 
 <title>Itay <? print $host; ?></title>
 	
-	<link rel="stylesheet" type="text/css" href="style.php" />
-	<link rel="stylesheet" type="text/css" media="screen" href="jQuery-UI/css/ui-lightness/jquery-ui-1.8.23.custom.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="jqGrid/css/ui.jqgrid.css" />
-	
-	<script src="jquery-1.8.0.min.js"></script>
-	<script src="jqGrid/js/i18n/grid.locale-en.js" type="text/javascript"></script>
-	<script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-
 <script>
 	function validateKey(element) {
 		var valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

@@ -11,4 +11,10 @@
 	if (!mysql_select_db($database)) {
 		die('Could not select database: ' . mysql_error());
 	}	
+	
+	mysql_query("SET character_set_client=utf8"); 
+	mysql_query("SET character_set_connection=utf8"); 
+	mysql_query("SET character_set_database=utf8"); 
+	mysql_query("SET character_set_results=utf8"); 
+	mysql_query("SET character_set_server=utf8"); 
 ?>
