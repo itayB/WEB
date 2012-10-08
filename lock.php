@@ -1,16 +1,18 @@
 <?php
-include('dbconfig.php');
+include("commonFunctions.php");
+
+$db = openMySqlConnection();
 session_start();
 $userCheck=$_SESSION['loginUser'];
 
-$ses_sql=mysql_query("select username from usersTable where username='$userCheck' ");
+$result = mysql_query("select username from usersTable where username='$userCheck' ");
 
-$row=mysql_fetch_array($ses_sql);
+$row = mysql_fetch_array($result);
 
 $login_session=$row['username'];
 
-if(!isset($login_session))
-{
+if(!isset($login_session)) {
 	header("Location: login.php");
 }
+closeMySqlConnection($db);
 ?>

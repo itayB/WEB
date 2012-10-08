@@ -11,19 +11,13 @@
 <?php
 include('lock.php');
 include("defines.php");
-include("commonFunctions.php");
 ?>
 
 <?php
 function getLastTimestamp() {
-	$username =$_SESSION['loginUser']; 
-	include("dbconfig.php");
-	$SQL = "SELECT * FROM usersTable WHERE userName='$username'";
-	$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
-	$count = mysql_num_rows($result);
-	if( $count > 0 ) {
-		$row = mysql_fetch_array($result,MYSQL_ASSOC);
-		$userIndex = $row['index'];
+	$userIndex = getUserIndex($username);
+	if (strcmp($userIndex,"-1") != 0) {
+		$db = openMySqlConnection();
 		$SQL = "SELECT * FROM usersInfoTable WHERE userIndex='$userIndex'";
 		$result = mysql_query( $SQL ) or die("Couldn t execute query.".mysql_error());
 		$count = mysql_num_rows($result);
@@ -33,6 +27,7 @@ function getLastTimestamp() {
 			updateLoginInfo($userIndex,$_SESSION['timestamp'],$_SESSION['timezoneOffset']);
 			return $lastLoginTime;
 		}
+		closeMySqlConnection($db);
 	}
 	return "0";
 }

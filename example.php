@@ -1,6 +1,8 @@
 <?php
+	include("commonFunctions.php");
+	
 	// connect to the database
-	include("dbconfig.php");
+	$db = openMySqlConnection();
 
 	$page = $_GET['page']; // get the requested page
 	$limit = $_GET['rows']; // get how many rows we want to have into the grid
@@ -42,4 +44,5 @@
 	$s .= "</rows>"; 
 	 
 	echo $s;
+	closeMySqlConnection($db);
 ?>	

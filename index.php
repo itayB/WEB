@@ -34,7 +34,7 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 }
 
 	if(isset($_POST['signin'])) {
-		include("dbconfig.php");
+		$db = openMySqlConnection();
 		
 		if(isset($_POST['username']) && !empty($_POST['username']) AND isset($_POST['password']) && !empty($_POST['password'])) {  
 			$username = mysql_escape_string($_POST['username']);
@@ -69,6 +69,7 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 		else {
 			$error=$missingFieldsMsg;
 		}
+		closeMySqlConnection($db);
 	}
 	else if(isset($_POST['signup'])) {
 		header("location: signup.php");
