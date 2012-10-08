@@ -1,17 +1,16 @@
 <html>
+<?php
+include('lock.php');
+include("defines.php");
+?>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-8-i" />
 	<link rel="stylesheet" type="text/css" href="style.php" />
 	<link rel="stylesheet" type="text/css" media="screen" href="jQuery-UI/css/ui-lightness/jquery-ui-1.8.23.custom.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="jqGrid/css/ui.jqgrid.css" />
 	<script src="jquery-1.8.0.min.js"></script>
-	<script src="jqGrid/js/i18n/grid.locale-he.js" type="text/javascript"></script>
+	<script src="jqGrid/js/i18n/grid.locale-<?php echo $lang; ?>.js" type="text/javascript"></script>
 	<script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-
-<?php
-include('lock.php');
-include("defines.php");
-?>
 
 <?php
 function getLastTimestamp() {
@@ -98,7 +97,7 @@ function getLastTimestamp() {
 	<script>
 		$(function(){
 			$("#userTable").jqGrid({
-				direction: 'rtl',
+				direction: '<?php getDir() ?>',
 				url:'example.php',
 				datatype: 'xml',
 				mtype: 'GET',				
