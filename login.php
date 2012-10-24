@@ -40,7 +40,7 @@ function getLastTimestamp() {
 			var currentTimestamp = <?php echo $_SESSION['timestamp']; ?>; // it's take the old one somehow... try to parse the min of this num 
 			var lastTimestamp = <?php echo getLastTimestamp(); ?>;
 			var date = new Date(lastTimestamp);
-			var lastDateString = "Your last login was at: ";
+			var lastDateString = "<?php echo $lastLoginAt; ?>";
 			lastDateString += date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
 			document.getElementById("loginTime").textContent = lastDateString;
 			document.getElementById("loginTime").nodeValue = lastDateString;

@@ -44,4 +44,5 @@ $activationGuideMsg="Please wait few minutes to receive email. If nothing arrive
 $resendActivationEmailMsg="send activation email again";
 $welcome="Welcome";
 $signout="Sign Out";
+$lastLoginAt="Your last login was at: ";
 ?>

@@ -44,4 +44,5 @@ $activationGuideMsg="המתן מספר דקות לקבלת ההודעה. במידה ולא התקבלה הודעה בדוק את
 $resendActivationEmailMsg="שלח מייל חוזר לאימות";
 $welcome="ברוך הבא";
 $signout="יציאה";
+$lastLoginAt="כניסתך האחרונה בוצעה ב: ";
 ?>
