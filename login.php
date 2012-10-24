@@ -7,10 +7,10 @@ include("defines.php");
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-8-i" />
 	<link rel="stylesheet" type="text/css" href="style.php" />
 	<link rel="stylesheet" type="text/css" media="screen" href="jQuery-UI/css/redmond/jquery-ui-1.8.24.custom.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="jqGrid/css/ui.jqgrid.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="jquery.jqGrid-4.4.1/css/ui.jqgrid.css" />
 	<script src="jquery-1.8.0.min.js"></script>
-	<script src="jqGrid/js/i18n/grid.locale-<?php echo $lang; ?>.js" type="text/javascript"></script>
-	<script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="jquery.jqGrid-4.4.1/js/i18n/grid.locale-<?php echo $lang; ?>.js" type="text/javascript" ></script>
+	<script src="jquery.jqGrid-4.4.1/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 
 <?php
 function getLastTimestamp() {
