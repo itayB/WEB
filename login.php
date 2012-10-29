@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <?php
 include('lock.php');
 include("defines.php");
@@ -8,9 +8,10 @@ include("defines.php");
 	<link rel="stylesheet" type="text/css" href="style.php" />
 	<link rel="stylesheet" type="text/css" media="screen" href="jQuery-UI/css/redmond/jquery-ui-1.8.24.custom.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="jquery.jqGrid-4.4.1/css/ui.jqgrid.css" />
-	<script src="jquery-1.8.0.min.js"></script>
+	<script src="jQuery-UI/js/jquery-1.8.2.min.js"></script>
 	<script src="jquery.jqGrid-4.4.1/js/i18n/grid.locale-<?php echo $lang; ?>.js" type="text/javascript" ></script>
 	<script src="jquery.jqGrid-4.4.1/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="jQuery-UI/js/jquery-ui-1.8.24.custom.min.js"></script>
 
 <?php
 function getLastTimestamp() {
@@ -88,6 +89,11 @@ function getLastTimestamp() {
 		*/
 	?>
 	<form enctype="multipart/form-data" action="" method="POST">
+		<div id="radio">
+			<input type="radio" id="radio1" name="radio" /><label for="radio1">פירוט חודשי</label>
+			<input type="radio" id="radio2" name="radio" checked="checked" /><label for="radio2">השוואה בין חודשים</label>
+	 		<input type="radio" id="radio3" name="radio" /><label for="radio3">השוואת קטגוריה</label>
+		</div>
 		<input type="file" name="uploadedfile">
 		<input type="submit" value="Upload File" />
 	</form>
@@ -95,6 +101,10 @@ function getLastTimestamp() {
 	<table id="userTable"></table>
 	<div id="userPager"></div>	
 	<script>
+		$(function() {
+			$( "#radio" ).buttonset();
+		});
+
 		$(function(){
 			$("#userTable").jqGrid({
 				direction: '<?php getDir() ?>',

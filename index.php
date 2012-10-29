@@ -101,6 +101,7 @@ if(!$detect->isMobile() && !$detect->isTablet()){
 		if (document.getElementsByName('timezoneOffset')[0] != null)
 			document.getElementsByName('timezoneOffset')[0].value = (new Date()).getTimezoneOffset();			
 	}
+	
 </script>
 </head>
 <body style="margin: 0;padding: 0" dir="<?php getDir() ?>">
